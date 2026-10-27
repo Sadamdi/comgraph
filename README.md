@@ -3,6 +3,7 @@
 Repo ini berisi tugas praktikum dan UAS **"Satu Stiker, Satu Warung"** (animasi 90 detik, 9:16, 1080x1920, untuk UAS + lomba BIDCC 2026, deadline lomba 31 Okt 2026 23:59 WIB).
 
 ## Mulai dari sini
+- **`HANDOFF.md` — panduan lengkap untuk agent cloud (setup Blender + MCP, kondisi, TODO). Baca ini dulu.**
 - `AGENTS.md` — instruksi untuk AI agent (Claude Code/Cursor/Codex) di repo ini.
 - `Agent/UAS_Satu_Stiker_Satu_Warung.md` — **catatan utama**: keputusan, urutan build, gotcha, status, cara melanjutkan (baca bagian 11–13).
 - `Agent/UAS_docs/` — laporan QA, naskah & cue audio, caption/email, bukti rubrik.

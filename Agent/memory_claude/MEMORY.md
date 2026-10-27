@@ -1,2 +1,3 @@
 - [UAS Satu Stiker Satu Warung](project_uas_satu_stiker_warung.md) — animasi 90 dtk BIDCC 2026 + UAS CG; file, keputusan, status
 - [QA sebelum render](feedback_qa_before_render.md) — wajib cek tembus/fisika/kualitas; simpan catatan di folder Agent
+- [Tanpa Co-Authored-By](feedback_no_coauthor_trailer.md) — commit/PR repo pemilik tanpa atribusi Claude
