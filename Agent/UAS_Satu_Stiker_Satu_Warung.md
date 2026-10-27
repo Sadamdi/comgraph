@@ -143,3 +143,12 @@ Catatan teknis: frame_set di file ini ~1 dtk/frame (kain/daun) -> sapuan 2700 fr
 - Pratinjau gerak resolusi rendah: `render/preview_bg.py` (frame_step 3, 33%, 4 sampel) -> `render/prev_pocari/p_*.png`; encode: `ffmpeg -framerate 10 -i p_%04d.png ...`.
 - Belum: render penuh ulang (frames_pocari/ghibli lama USANG -> hapus sebelum render baru), encode, audio asli, baca hasil pratinjau.
 - Rekomendasi: render Pocari penuh dulu (~9 jam), Ghibli (~19 jam) belakangan / per sesi dengan `mulai_render.ps1` (ganti nama file blend ke V3 di skrip render bila perlu).
+
+## 14. Sesi cloud 2026-10-27 (malam) — kepala Ghibli (HANDOFF bagian 5 butir 1)
+Setup cloud: Blender **tidak** bisa diunduh (download.blender.org diblok proxy) -> dipakai wheel PyPI `bpy==5.2.1` (venv `uv`, headless). Render EEVEE lewat `xvfb-run` (software GL, ±8 dtk untuk 400 px / 8 sampel). Smoke test `15_qa.check_frames` lulus. Path tekstur Windows di dalam `COMGRAPH_V3_GHIBLI.blend` diubah jadi relatif (`//Produksi/...`). Cache kain `Spanduk_Kain` tidak ada di repo -> **bake ulang** sebelum render.
+Pilihan pemilik: modeling manual (bukan VRoid).
+- **Skrip baru `scripts/35_ghibli_head.py`**: `ghibli_head("LASTRI","lastri")` / `ghibli_head("MHS","cust")`. Membangun ulang tengkorak sebagai SDF numpy (tengkorak+rahang+pipi+alis+hidung+bibir, lekuk soket mata) diproyeksikan ke quad-sphere (tanpa kutub), bukaan mata almond pada topologi dengan tepi tebal kelopak, kelopak atas baru yang tepinya mengikuti almond, mata Ghibli (iris besar gelap, bayangan kelopak di sklera), bulu mata/alis baru, telinga bercekung, mulut baru (shape key `smile/open_a/open_o` nama sama, aksi lama dipindah), normal kustom dari proxy halus (Data Transfer). Objek lama dipakai ulang -> rig, gaze, kedip, mulut, animasi tetap jalan. Kilau mata hilang saat kedip (driver).
+- Diterapkan ke `COMGRAPH_V3_GHIBLI.blend` (di working tree cloud; **belum di-commit**, file 390 MB LFS). QA numerik (45 frame): 0 tembus, 0 overlap, animasi kedip/mulut utuh.
+- Gotcha: `v.index` verteks bmesh baru = -1 (jangan dipakai untuk uji duplikat); soket mata dari 2 bola saling beririsan di pangkal hidung -> batasi ke sisi luar; a_in almond > ~0.7 rad membuat retakan di pangkal hidung.
+- Masih kurang: hidung/profil masih sederhana, garis lingkaran tipis kelopak saat tertutup, rambut belum dibuat ulang (masih shell lama), bibir belum bervolume, belum dicek di render adegan penuh.
+- Skrip lain sempat di-remap ke path Linux (`Agent/mcp_setup/remap_paths.py`); **tidak di-commit** agar path Windows pemilik tetap utuh.
