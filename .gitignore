@@ -1,0 +1,27 @@
+# Konfigurasi lokal agent
+.claude/
+
+# Hasil render & cache (besar, bisa dibuat ulang)
+**/frames_*/
+**/frames/
+**/sketsa_frames/
+**/prev_*/
+**/blendcache_*/
+**/*.blend1
+**/*.tmp
+**/render/_*
+UAS UTS/Produksi/Final_*.mp4
+
+# Salinan .blend lama / duplikat (cukup satu file kerja terbaru lewat Git LFS)
+UAS UTS/COMGRAPH_UAS_V3.blend
+UAS UTS/COMGRAPH_UAS_GHIBLI.blend
+UAS UTS/COMGRAPH_UAS_POCARI.blend
+UAS UTS/COMGRAPH_V3_POCARI.blend
+UAS UTS/COMGRAPHTHEORYUASLOMBA.blend
+UAS UTS/_backup/
+
+# Sistem
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc

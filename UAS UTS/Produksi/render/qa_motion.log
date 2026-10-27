@@ -1,0 +1,21 @@
+00:14.891  blend            | Read blend: "D:\adam kuliah\Semester 5\Computer Graphic\UAS UTS\Produksi\render\_qa_copy.blend"
+find_node_operation: Failed for (RIGIDBODY_REBUILD, '')
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+--------------------------------------------------------------------
+Failed to add relation "Animation -> Rigid Body"
+Could not find op_to: OperationKey(type: TRANSFORM, component name: '', operation code: RIGIDBODY_REBUILD)
+
+Trace:
+
+Depth    Type                     Name
+-----    ----                     ----
+1        Object                   WIND_Spanduk
+
+BlenderMCP: cannot start server in background mode (blender -b) - commands would never execute
+BlenderMCP: run Blender with a GUI, or use a virtual display: xvfb-run -a blender
+BlenderMCP addon registered
+QA_MOTION_DONE 2041
+BlenderMCP server stopped
+BlenderMCP addon unregistered
+
+Blender quit
