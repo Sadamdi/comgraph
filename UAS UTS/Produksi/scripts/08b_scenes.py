@@ -35,7 +35,7 @@ def S07():
         act(L, f - 12, handR=Wr(tip + Vector((0, 0.04, 0.08)), (-100, 0, 0)), head=(20 + (i % 2), -3 + (i % 3), 0), gaze=tuple(P + Vector((0, 0, 0.0))))
         act(L, f, handR=Wr(tip, (-100, 0, 0)))
     act(L, 1304, handR=Wr(Vector((-0.34, 0.31, 1.46)), (-100, 0, 0)), head=(12, -2, 0), mouth=(0.45, 0, 0), brow=(0.004, -2))
-    act(L, 1318, handL=Wr(PH_L + Vector((0.0, 0.0, 0.07)), (-90, 0, 0)), handR=None, head=(8, 0, 0), gaze=tuple(PH_L), lean=6)
+    act(L, 1318, handL=Wr(PH_L + Vector((0.0, 0.0, 0.07)), (-90, 0, 0)), handR=Wr(Vector((-0.55, 0.30, 1.40)), H_FLAT), head=(8, 0, 0), gaze=tuple(PH_L), lean=6)
 
 # ============================================================== S08  f1321-1500
 def S08():

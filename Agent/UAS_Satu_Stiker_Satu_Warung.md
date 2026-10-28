@@ -153,3 +153,10 @@ File kerja: `UAS UTS/COMGRAPH_V3_GHIBLI.blend` (tersimpan). Tambahan sejak 13c:
 - QA: tekuk pergelangan max 45 deg (0 frame >45), 0 tembus >=1.2 cm, 0 overlap (sampel tiap 9 frame). Lonjakan sisa: teleport sah di batas shot (f241-243, 1502-1503), gerak penjepit f2172-2231 (0.11-0.14).
 - `render/mulai_render.ps1` sekarang memakai `COMGRAPH_V3_GHIBLI.blend` (Pocari dihapus dari opsi).
 - Belum: pratinjau penuh di `render/prev_ghibli/` (jalan di latar) -> encode & tonton; hapus `frames_ghibli` lama sebelum render; render penuh ~19 jam.
+
+### 13e. Render penuh dimulai (28 Okt 2026, pagi)
+- Animasi dibangun ulang penuh dalam 1 proses latar: `render/rebuild_all_bg.py` (A+B+props+polish+smooth_poles+head_rot+hair spring, ±9 menit). Cadangan sebelum rebuild: `UAS UTS/_backup/V3_GHIBLI_pre_rebuild_*.blend`.
+- QA file hasil rebuild: `qa_pen_bg.py` (0 tembus, 0 overlap), `qa_hands_bg.py` (tangan vs pakaian sendiri/lain/statis; solidify dimatikan saat uji; sisa: tangan Mhs masuk saku jeans f589-661 = disengaja), `qa_motion_bg.py` (tekuk pergelangan <=45, 87 lonjakan sisa). Perbaikan: Lastri tangan kanan tetap di meja saat f1318 (08b).
+- SFX sinkron animasi: `events_bg.py` -> `events.json` (225 tapak kaki dari kontak lantai, 4 mobil); `scripts/make_sfx_sync.py` -> `audio/sfx/sfx_mix.wav` (90 dtk, puncak -5.9 dBFS, ~-25.8 LUFS). SFX masih sintesis (draf), belum didengar manusia. Perlu Python PowerShell (numpy/scipy), bukan `python -I` di bash.
+- Render: `render/mulai_render.ps1 -Gaya Ghibli` (file V3_GHIBLI, 20 sampel, resumable) -> `Produksi/frames_ghibli/`. Log: `render/run_log.txt`, `frames_ghibli/_progress.txt`. Frame lama dihapus.
+- Penggabungan setelah 2700 frame: `bash encode.sh audio/sfx/sfx_mix.wav` (GAYA=ghibli) -> `Final_Satu_Stiker_Satu_Warung_ghibli.mp4`.
