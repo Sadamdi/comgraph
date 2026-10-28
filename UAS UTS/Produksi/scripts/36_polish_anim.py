@@ -51,3 +51,17 @@ def polish(rig_name, over=0.15, over_max=0.018, antic=0.06, antic_max=0.02, fing
             fc = next((f for f in cb.fcurves if f.data_path == f'pose.bones["{bn}"].rotation_euler' and f.array_index == ai), None)
             if fc: _shift(fc, d)
     return st
+
+
+def smooth_poles(rig_name, passes=2, w=(0.25, 0.5, 0.25)):
+    """Haluskan kurva sudut pole IK (ayunan siku): rata-rata berbobot tetangga pada nilai key; ujung tetap. Memengaruhi ayunan siku saja."""
+    R = bpy.data.objects[rig_name]; ad = R.animation_data; cb = ad.action.layers[0].strips[0].channelbag(ad.action_slot)
+    n = 0
+    for fc in cb.fcurves:
+        if not fc.data_path.endswith("pole_angle"): continue
+        for _ in range(passes):
+            vals = [kp.co[1] for kp in fc.keyframe_points]
+            for i in range(1, len(vals) - 1):
+                fc.keyframe_points[i].co[1] = w[0] * vals[i - 1] + w[1] * vals[i] + w[2] * vals[i + 1]
+        fc.update(); n += 1
+    return n

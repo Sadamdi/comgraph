@@ -143,3 +143,13 @@ Catatan teknis: frame_set di file ini ~1 dtk/frame (kain/daun) -> sapuan 2700 fr
 - Pratinjau gerak resolusi rendah: `render/preview_bg.py` (frame_step 3, 33%, 4 sampel) -> `render/prev_pocari/p_*.png`; encode: `ffmpeg -framerate 10 -i p_%04d.png ...`.
 - Belum: render penuh ulang (frames_pocari/ghibli lama USANG -> hapus sebelum render baru), encode, audio asli, baca hasil pratinjau.
 - Rekomendasi: render Pocari penuh dulu (~9 jam), Ghibli (~19 jam) belakangan / per sesi dengan `mulai_render.ps1` (ganti nama file blend ke V3 di skrip render bila perlu).
+
+### 13d. Sesi malam 28 Okt 2026 (kerja lokal; Pocari dibatalkan, fokus Ghibli)
+File kerja: `UAS UTS/COMGRAPH_V3_GHIBLI.blend` (tersimpan). Tambahan sejak 13c:
+- Wajah Ghibli (`35_ghibli_face.py`): mata skala 0.80, iris besar gelap (cos 0.58), sklera krem, garis kelopak tebal, EYE_LIMIT (X+-18, Z+-30), highlight dipindah; rahang dibulatkan (`soften_jaw` inline: x*(1+0.20*t^0.8), dagu maju 6 mm) lalu `nape_cap2` dibuat ulang; blush diperkecil 0.72; kelopak menyipit saat senyum (driver `location.z` lid/lidlow dari shape key `smile`).
+- Poles animasi (`36_polish_anim.py`): overshoot+settle, anticipation, overlap jari (+1/2/3 frame), kepala menyusul mata, `smooth_poles` (sudut pole IK). WAJIB dijalankan SEKALI setelah rebuild animasi (A,B,props) -> urutan: polish(L), polish(M), smooth_poles(L/M), lalu hair spring.
+- Rambut sekunder (`37_hair_spring.py`): pegas-peredam dari `render/head_rot.json` (hasil `qa_motion_bg.py`); jalankan ulang setelah animasi berubah.
+- Papan QRIS tetap tegak (constraint LIMIT_ROTATION `KEEP_UPRIGHT` pada `QRIS_DUMMY_NONAKTIF`); rak `Shelf`+`Thermos` dinaikkan +0.42 (Lastri berdiri di lantai 0.22); tanah/aspal dicerahkan, exposure -0.55.
+- QA: tekuk pergelangan max 45 deg (0 frame >45), 0 tembus >=1.2 cm, 0 overlap (sampel tiap 9 frame). Lonjakan sisa: teleport sah di batas shot (f241-243, 1502-1503), gerak penjepit f2172-2231 (0.11-0.14).
+- `render/mulai_render.ps1` sekarang memakai `COMGRAPH_V3_GHIBLI.blend` (Pocari dihapus dari opsi).
+- Belum: pratinjau penuh di `render/prev_ghibli/` (jalan di latar) -> encode & tonton; hapus `frames_ghibli` lama sebelum render; render penuh ~19 jam.
